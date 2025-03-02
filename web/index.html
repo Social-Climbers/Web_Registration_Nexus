@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByBV-306aK2k8m8O_swdnnnegnIlUa8Zw"></script>
+  <base href="$FLUTTER_BASE_HREF">
+  <meta property="og:image" content="https://iili.io/3dirWhB.jpg" />
+  <meta property="og:type" content="website">
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description"
+    content="This competition will be held on a Kilter Board set at a 30-degree angle. Participants will begin with a V1 route, progressing through increasingly difficult climbs in an elimination format until the Last Man Standing is determined">
+  <meta property="og:image" content="https://iili.io/3dirWhB.jpg" />
+  <meta name="twitter:image" content="https://iili.io/3dirWhB.jpg" />
+  <meta property="og:image" content="https://iili.io/3dirWhB.jpg">
+
+  <!-- Primary Meta Tags -->
+  <title>Last Man Standing Kilterboard</title>
+  <meta name="title" content="Last Man Standing Kilterboard">
+  <meta name="description"
+    content="This competition will be held on a Kilter Board set at a 30-degree angle. Participants will begin with a V1 route, progressing through increasingly difficult climbs in an elimination format until the Last Man Standing is determined">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://uckilter.socialclimbersapp.com/">
+  <meta property="og:title" content="Last Man Standing Kilterboard">
+  <meta property="og:description"
+    content="This competition will be held on a Kilter Board set at a 30-degree angle. Participants will begin with a V1 route, progressing through increasingly difficult climbs in an elimination format until the Last Man Standing is determined">
+  <meta property="og:image" content="https://iili.io/3dirWhB.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://uckilter.socialclimbersapp.com/">
+  <meta property="twitter:title" content="Last Man Standing Kilterboard">
+  <meta property="twitter:description"
+    content="This competition will be held on a Kilter Board set at a 30-degree angle. Participants will begin with a V1 route, progressing through increasingly difficult climbs in an elimination format until the Last Man Standing is determined">
+  <meta property="twitter:image" content="https://iili.io/3dirWhB.jpg">
+
+  <!-- Optional Meta Tags -->
+  <meta name="keywords"
+    content="This competition will be held on a Kilter Board set at a 30-degree angle. Participants will begin with a V1 route, progressing through increasingly difficult climbs in an elimination format until the Last Man Standing is determined">
+  <meta name="robots" content="index, follow">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="language" content="English">
+  <meta name="revisit-after" content=" days">
+  <meta name="author" content="">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Last Man Standing Kilterboard">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png" />
+
+  <title>bedrockxunderground</title>
+  <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", './version.json', true);
+        xmlhttp.onload = function () {
+          if (xmlhttp.status == 200) {
+            var version = xmlhttp.responseText.split(',')[1];
+            var currentVersion = window.localStorage.getItem('version');
+            console.log('currentVersion is ' + currentVersion);
+            console.log('version is ' + version);
+            if (currentVersion && currentVersion != version) {
+              console.log('clearing cache');
+              caches.delete('flutter-app-manifest');
+              caches.delete('flutter-temp-cache');
+              caches.delete('flutter-app-cache');
+              location.reload();
+            }
+            window.localStorage.setItem('version', version);
+
+          }
+        };
+        xmlhttp.send();
+      });
+    }
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+
+</html>
