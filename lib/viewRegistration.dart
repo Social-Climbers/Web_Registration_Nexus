@@ -1,9 +1,17 @@
+import 'package:bedrockxunderground/main.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:html' as html;
+import 'package:intl/intl.dart';
 
 class ViewRegistrationPage extends StatefulWidget {
   @override
   State<ViewRegistrationPage> createState() => _ViewRegistrationPageState();
+}
+
+void _redirectToExternalBrowser(Uri url) {
+  redirect = true;
+  html.window.open(url.toString(), '_blank'); // Opens in an external browser
 }
 
 class _ViewRegistrationPageState extends State<ViewRegistrationPage> {
@@ -62,8 +70,46 @@ class _ViewRegistrationPageState extends State<ViewRegistrationPage> {
                       ),
                     ),
                     SizedBox(height: 20),
+                    Container(
+                      width: double.infinity,
+                      child: InkWell(
+                        onTap: () {
+                          launchExternalBrowser(
+                              "https://uckilter.socialclimbersapp.com/");
+
+                          _redirectToExternalBrowser(Uri.parse(
+                              "https://uckilter.socialclimbersapp.com/"));
+                          launchExternalBrowserJS(
+                              "https://uckilter.socialclimbersapp.com/");
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 15),
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'External Link',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
                     Text(
-                      'App Version: 1.1.2',
+                      'Current Browser ${platformBrowser}',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
+                      ),
+                    ),
+                    Text(
+                      'App Version: 1.1.5 on ${platform}',
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 16,
@@ -76,6 +122,7 @@ class _ViewRegistrationPageState extends State<ViewRegistrationPage> {
           : StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
                   .collection('KilterboardUC')
+                  .orderBy('Timestamp')
                   .snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
@@ -93,6 +140,9 @@ class _ViewRegistrationPageState extends State<ViewRegistrationPage> {
                     final payment = member['payment'];
                     final hear = member['hear'];
 
+                    final timestamp = member['Timestamp'] as Timestamp;
+                    final formattedDate = DateFormat('dd/MM/yyyy HH:mm:ss')
+                        .format(timestamp.toDate());
                     return Column(
                       children: [
                         ListTile(
@@ -107,6 +157,35 @@ class _ViewRegistrationPageState extends State<ViewRegistrationPage> {
                           subtitle: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'Registeration ID: ',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    TextSpan(
+                                      text: '${member['registrationId']}',
+                                      style: TextStyle(
+                                          color: Colors.orange,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'Registered: ',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    TextSpan(text: '${formattedDate}'),
+                                  ],
+                                ),
+                              ),
                               Text.rich(
                                 TextSpan(
                                   children: [
@@ -153,6 +232,19 @@ class _ViewRegistrationPageState extends State<ViewRegistrationPage> {
                                     ),
                                     TextSpan(
                                         text: '${experience['kilterBefore:']}'),
+                                  ],
+                                ),
+                              ),
+                              Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'Kilter Max Grade: ',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    TextSpan(
+                                        text: '${experience['highestGrade']}'),
                                   ],
                                 ),
                               ),
